@@ -23,7 +23,7 @@ abstract class ZoomVideoSdkVideoHelperPlatform extends PlatformInterface {
     throw UnimplementedError('stopVideo() has not been implemented.');
   }
 
-  Future<bool> switchCamera(String deviceId) async {
+  Future<bool> switchCamera(String? deviceId) async {
     throw UnimplementedError('switchCamera() has not been implemented.');
   }
 
@@ -55,6 +55,18 @@ abstract class ZoomVideoSdkVideoHelperPlatform extends PlatformInterface {
     throw UnimplementedError('enableOriginalAspectRatio() has not been implemented.');
   }
 
+  Future<bool> turnOnOrOffFlashlight(bool isOn) async {
+    throw UnimplementedError('turnOnOrOffFlashlight() has not been implemented.');
+  }
+
+  Future<bool> isSupportFlashlight() async {
+    throw UnimplementedError('isSupportFlashlight() has not been implemented.');
+  }
+
+  Future<bool> isFlashlightOn() async {
+    throw UnimplementedError('isFlashlightOn() has not been implemented.');
+  }
+
 }
 
 /// Zoom Video SDK Video Helper
@@ -82,7 +94,7 @@ class ZoomVideoSdkVideoHelper extends ZoomVideoSdkVideoHelperPlatform {
   /// Switch to the next available camera.
   /// <br />Return true if the switch to the next camera was successful. Otherwise, this function returns false.
   @override
-  Future<bool> switchCamera(String deviceId) async {
+  Future<bool> switchCamera(String? deviceId) async {
     var params = <String, dynamic>{};
     params.putIfAbsent("deviceId", () => deviceId);
 
@@ -171,6 +183,36 @@ class ZoomVideoSdkVideoHelper extends ZoomVideoSdkVideoHelperPlatform {
     params.putIfAbsent("enable", () => enable);
     return await methodChannel
         .invokeMethod<bool>('enableOriginalAspectRatio', params)
+        .then<bool>((bool? value) => value ?? false);
+  }
+
+  /// Turn on or off the flashlight.
+  /// <br />[isOn] true if you want to turn on the flashlight, false to turn it off.
+  /// <br />Return true if the operation was successful. Otherwise, this function returns false.
+  @override
+  Future<bool> turnOnOrOffFlashlight(bool isOn) async {
+    var params = <String, dynamic>{};
+    params.putIfAbsent("isOn", () => isOn);
+    return await methodChannel
+        .invokeMethod<bool>('turnOnOrOffFlashlight', params)
+        .then<bool>((bool? value) => value ?? false);
+  }
+
+  /// Check if the device supports flashlight.
+  /// <br />Return true if the device supports flashlight. Otherwise, this function returns false.
+  @override
+  Future<bool> isSupportFlashlight() async {
+    return await methodChannel
+        .invokeMethod<bool>('isSupportFlashlight')
+        .then<bool>((bool? value) => value ?? false);
+  }
+
+  /// Check if the flashlight is on.
+  /// <br />Return true if the flashlight is on. Otherwise, this function returns false.
+  @override
+  Future<bool> isFlashlightOn() async {
+    return await methodChannel
+        .invokeMethod<bool>('isFlashlightOn')
         .then<bool>((bool? value) => value ?? false);
   }
 

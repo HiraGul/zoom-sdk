@@ -171,4 +171,18 @@ NSString* appGroupId;
     }
 }
 
+-(void) pauseShare:(FlutterResult) result
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([[self getShareHelper] pauseShare])]);
+    });
+}
+
+-(void) resumeShare:(FlutterResult) result
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([[self getShareHelper] resumeShare])]);
+    });
+}
+
 @end

@@ -133,4 +133,15 @@ class ZoomVideoSdkUser {
         .invokeMethod<bool>('canSetUserVolume', params)
         .then<bool>((bool? value) => value ?? false);
   }
+
+  /// Get the GUID of the user in the session.
+  /// <br />Return the GUID of the user in the session.
+  Future<String> getUserReference() async {
+    var params = <String, dynamic>{};
+    params.putIfAbsent("userId", () => userId);
+
+    return await methodChannel
+        .invokeMethod<String>('getUserReference', params)
+        .then<String>((String? value) => value ?? "");
+  }
 }

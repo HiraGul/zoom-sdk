@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CallKit/CallKit.h>
+#import <ZoomVideoSDK/ZoomVideoSDK.h>
 
 #define ENABLE_CALLKIT_VOIP_MEETING 1
 
@@ -18,5 +19,6 @@
 + (instancetype)sharedManager;
 - (void)startCallWithHandle:(NSString *)handle complete:(void (^)(void))completion;
 - (void)endCallWithComplete:(void (^)(void))completion;
+- (void)setEnableCallKit: (BOOL)enable;
 
 @end

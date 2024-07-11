@@ -4,7 +4,7 @@ import 'dart:core';
 /// <br />For example, you can retrieve the language name of English and the ID of 1.
 /// <br />Language ID is used to setSpokenLanguage() and setTranslationLanguage()
 class ZoomVideoSdkLiveTranscriptionLanguage {
-  String languageId;
+  int languageId;
   String languageName;
 
   ZoomVideoSdkLiveTranscriptionLanguage(this.languageId, this.languageName);

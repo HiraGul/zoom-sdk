@@ -133,4 +133,34 @@ public class FlutterZoomVideoSdkVideoHelper {
             }
         });
     }
+
+    public void turnOnOrOffFlashlight(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
+        Map<String, Object> params = call.arguments();
+        boolean isOn = (boolean) params.get("isOn");
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                result.success(getVideoHelper().turnOnOrOffFlashlight(isOn));
+            }
+        });
+    }
+
+
+    public void isSupportFlashlight(@NonNull MethodChannel.Result result) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                result.success(getVideoHelper().isSupportFlashlight());
+            }
+        });
+    }
+
+    public void isFlashlightOn(@NonNull MethodChannel.Result result) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                result.success(getVideoHelper().isFlashlightOn());
+            }
+        });
+    }
 }

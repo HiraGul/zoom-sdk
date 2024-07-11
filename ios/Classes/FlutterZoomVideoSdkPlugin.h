@@ -23,4 +23,8 @@
 
 -(void) getRecordingConsentType:(FlutterResult) result;
 
+-(void) exportLog:(FlutterResult) result;
+
+-(void) cleanAllExportedLogs:(FlutterResult) result;
+
 @end

@@ -31,4 +31,8 @@
 
 -(void) isViewerAnnotationDisabled: (FlutterResult) result;
 
+-(void) pauseShare: (FlutterResult) result;
+
+-(void) resumeShare: (FlutterResult) result;
+
 @end

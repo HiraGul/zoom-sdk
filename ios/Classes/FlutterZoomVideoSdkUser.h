@@ -29,4 +29,6 @@
 
 -(void) canSetUserVolume:(FlutterMethodCall *)call withResult:(FlutterResult) result;
 
+-(void) getUserReference: (FlutterMethodCall *)call withResult:(FlutterResult) result;
+
 @end

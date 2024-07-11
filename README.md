@@ -72,7 +72,7 @@ Checkout the Zoom Flutter Video SDK Sample App in the `example` directory.
 ## Documentation
 Please visit [Video SDK for Flutter](https://developers.zoom.us/docs/video-sdk/flutter) to learn how to use the SDK wrapper and run the sample application.
 
-For the full list of APIs and Event Listeners, see the [Reference](https://developers.zoom.us/docs/video-sdk/flutter/reference/).
+For the full list of APIs and Event Listeners, see the [Reference](https://marketplacefront.zoom.us/sdk/custom/flutter/index.html).
 
 ## Need help?
 
@@ -80,7 +80,7 @@ If you're looking for help, try [Developer Support](https://devsupport.zoom.us/)
 
 ## Changelog
 
-For the changelog, see [Video SDK for Flutter](https://devsupport.zoom.us/hc/en-us/sections/13334221757325-Flutter).
+For the changelog, see [Video SDK for Flutter](https://developers.zoom.us/changelog/video-sdk/flutter/).
 
 ## License
 
