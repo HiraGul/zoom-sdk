@@ -363,6 +363,7 @@ class InitConfig {
   String? appGroupId;
   String? screeShareBundleId;
   bool? enableFullHD; // Availble for certain Android hardware only.
+  bool? enableCallKit;
   RawDataMemoryMode? videoRawDataMemoryMode;
   RawDataMemoryMode? audioRawDataMemoryMode;
   RawDataMemoryMode? shareRawDataMemoryMode;
@@ -376,6 +377,7 @@ class InitConfig {
       this.appGroupId,
       this.screeShareBundleId,
       this.enableFullHD,
+      this.enableCallKit,
       this.videoRawDataMemoryMode,
       this.audioRawDataMemoryMode,
       this.shareRawDataMemoryMode,
@@ -448,6 +450,14 @@ abstract class ZoomVideoSdkPlatform extends PlatformInterface {
   Future<String> getRecordingConsentType() async {
     throw UnimplementedError('getRecordingConsentType() has not been implemented.');
   }
+
+  Future<String> exportLog() async {
+    throw UnimplementedError('exportLog() has not been implemented.');
+  }
+
+  Future<String> cleanAllExportedLogs() async {
+    throw UnimplementedError('cleanAllExportedLogs() has not been implemented.');
+  }
 }
 
 class ZoomVideoSdk extends ZoomVideoSdkPlatform {
@@ -480,6 +490,7 @@ class ZoomVideoSdk extends ZoomVideoSdkPlatform {
     configMap.putIfAbsent("appGroupId", () => configs.appGroupId);
     configMap.putIfAbsent("screeShareBundleId", () => configs.screeShareBundleId);
     configMap.putIfAbsent("enableFullHD", () => configs.enableFullHD);
+    configMap.putIfAbsent("enableCallKit", () => configs.enableCallKit);
     configMap.putIfAbsent(
         "videoRawDataMemoryMode", () => configs.videoRawDataMemoryMode);
     configMap.putIfAbsent(
@@ -560,5 +571,19 @@ class ZoomVideoSdk extends ZoomVideoSdkPlatform {
     return await methodChannel
         .invokeMethod<bool>('declineRecordingConsent')
         .then<bool>((bool? value) => value ?? false);
+  }
+
+  @override
+  Future<String> exportLog() async {
+    return await methodChannel
+        .invokeMethod<String>('exportLog')
+        .then<String>((String? value) => value ?? "");
+  }
+
+  @override
+  Future<String> cleanAllExportedLogs() async {
+    return await methodChannel
+        .invokeMethod<String>('cleanAllExportedLogs')
+        .then<String>((String? value) => value ?? "");
   }
 }

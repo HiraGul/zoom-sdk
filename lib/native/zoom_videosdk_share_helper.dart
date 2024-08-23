@@ -62,6 +62,16 @@ abstract class ZoomVideoSdkShareHelperPlatform extends PlatformInterface {
     throw UnimplementedError(
         'isViewerAnnotationDisabled() has not been implemented.');
   }
+
+  Future<String?> pauseShare() async {
+    throw UnimplementedError(
+        'pauseShare() has not been implemented.');
+  }
+
+  Future<String?> resumeShare() async {
+    throw UnimplementedError(
+        'resumeShare() has not been implemented.');
+  }
 }
 
 /// Zoom Video SDK Share Control
@@ -169,4 +179,17 @@ class ZoomVideoSdkShareHelper extends ZoomVideoSdkShareHelperPlatform {
         .then<bool>((bool? value) => value ?? false);
   }
 
+  @override
+  Future<String?> pauseShare() async {
+    return await methodChannel
+        .invokeMethod<String?>('pauseShare')
+        .then<String?>((String? value) => value);
+  }
+
+  @override
+  Future<String?> resumeShare() async {
+    return await methodChannel
+        .invokeMethod<String?>('resumeShare')
+        .then<String?>((String? value) => value);
+  }
 }

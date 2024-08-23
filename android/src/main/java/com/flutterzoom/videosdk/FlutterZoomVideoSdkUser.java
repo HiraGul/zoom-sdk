@@ -147,4 +147,14 @@ public class FlutterZoomVideoSdkUser {
             result.success(user.canSetUserVolume(isShareAudio));
         }
     }
+
+    public void getUserGUID(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
+        Map<String, Object> args = call.arguments();
+        String userId = (String) args.get("userId");
+        ZoomVideoSDKUser user = getUser(userId);
+        if (user != null) {
+            result.success(user.getUserGUID());
+        }
+    }
+
 }

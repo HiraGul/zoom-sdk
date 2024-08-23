@@ -1,3 +1,3 @@
-# Change log 1.7.10
+# Change log
 
-For the changelog, see [Video SDK for Flutter](https://devsupport.zoom.us/hc/en-us/sections/13334221757325-Flutter).
+For the changelog, see [Video SDK for Flutter](https://developers.zoom.us/changelog/video-sdk/flutter/).

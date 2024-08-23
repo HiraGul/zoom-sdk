@@ -51,7 +51,7 @@ abstract class ZoomVideoSdkRemoteCameraControlHelperPlatform extends PlatformInt
 class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraControlHelperPlatform {
   final methodChannel = const MethodChannel('flutter_zoom_videosdk');
 
-  /// Give up control of the remote camera.
+  /// Give up control of the remote camera from the user with [userId].
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
   Future<String> giveUpControlRemoteCamera(String userId) async {
@@ -63,7 +63,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Request to control remote camera.
+  /// Request to control remote camera from the user with [userId].
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
   Future<String> requestControlRemoteCamera(String userId) async {
@@ -75,7 +75,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera to the left by [range].
+  /// Turn the camera to the left by [range] from the user with [userId].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
@@ -89,7 +89,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera to the right by [range].
+  /// Turn the camera to the right by [range] from the user with [userId].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
@@ -103,7 +103,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera down by [range].
+  /// Turn the camera down by [range] from the user with [userId].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
@@ -117,7 +117,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera up by [range].
+  /// Turn the camera up by [range] from the user with [userId].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
@@ -131,7 +131,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Zoom in the camera by [range].
+  /// Zoom in the camera by [range] from the user with [userId].
   /// Zoom range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
@@ -145,7 +145,7 @@ class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraCont
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Zoom out the camera by [range].
+  /// Zoom out the camera by [range] from the user with [userId].
   /// Zoom range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
