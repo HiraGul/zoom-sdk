@@ -157,10 +157,13 @@ public class FlutterZoomVideoSdkView implements PlatformView {
         this.preview = newPreview;
 
         ZoomVideoSDKVideoHelper videoHelper = ZoomVideoSDK.getInstance().getVideoHelper();
-        if (preview) {
+        if (preview && currentCanvas == null) {
             videoHelper.startVideoCanvasPreview(videoView, videoAspect);
+            ZoomVideoSDKUser user = ZoomVideoSDK.getInstance().getSession().getMySelf();
+            currentCanvas = user.getVideoCanvas();
         } else {
             videoHelper.stopVideoCanvasPreview(videoView);
+            currentCanvas = null;
         }
     }
 

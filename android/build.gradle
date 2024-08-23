@@ -22,7 +22,6 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    namespace "com.flutterzoom.videosdk"
     compileSdkVersion 31
 
     compileOptions {
@@ -38,9 +37,9 @@ android {
 dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation "androidx.security:security-crypto:1.1.0-alpha06"
-    implementation "com.google.crypto.tink:tink-android:1.8.0"
+    implementation "com.google.crypto.tink:tink-android:1.7.0"
     implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "us.zoom.videosdk:zoomvideosdk-core:1.11.2"
-    implementation "us.zoom.videosdk:zoomvideosdk-videoeffects:1.11.2"
-    implementation "us.zoom.videosdk:zoomvideosdk-annotation:1.11.2"
+    implementation "us.zoom.videosdk:zoomvideosdk-core:1.9.0"
+    implementation "us.zoom.videosdk:zoomvideosdk-videoeffects:1.9.0"
+    implementation "us.zoom.videosdk:zoomvideosdk-annotation:1.9.0"
 }

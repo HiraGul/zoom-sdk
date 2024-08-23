@@ -51,7 +51,6 @@ import us.zoom.sdk.ZoomVideoSDKSession;
 import us.zoom.sdk.ZoomVideoSDKSessionContext;
 import us.zoom.sdk.ZoomVideoSDKShareHelper;
 import us.zoom.sdk.ZoomVideoSDKShareStatus;
-import us.zoom.sdk.ZoomVideoSDKTestMicStatus;
 import us.zoom.sdk.ZoomVideoSDKUser;
 import us.zoom.sdk.ZoomVideoSDKUserHelper;
 import us.zoom.sdk.ZoomVideoSDKVideoCanvas;
@@ -149,12 +148,6 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
         break;
       case "cleanup":
         cleanup(result);
-        break;
-      case "exportLog":
-        exportLog(result);
-        break;
-      case "cleanAllExportedLogs":
-        cleanAllExportedLogs(result);
         break;
       case "canSwitchSpeaker":
         audioHelper.canSwitchSpeaker(result);
@@ -396,12 +389,6 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
       case "isViewerAnnotationDisabled":
         shareHelper.isViewerAnnotationDisabled(result);
         break;
-      case "pauseShare":
-        shareHelper.pauseShare(result);
-        break;
-      case "resumeShare":
-        shareHelper.resumeShare(result);
-        break;
       case "getUserShareBpf":
         shareStatisticInfo.getUserShareBpf(call, result);
         break;
@@ -470,9 +457,7 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
         break;
       case "canSetUserVolume":
         user.canSetUserVolume(call, result);
-        break;
-      case "getUserReference":
-        user.getUserGUID(call, result);
+        Log.d(DEBUG_TAG, "canSetUserVolume");
         break;
       case "getCameraList":
         videoHelper.getCameraList(result);
@@ -501,15 +486,6 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
       case "enableOriginalAspectRatio":
         videoHelper.enableOriginalAspectRatio(call, result);
         break;
-      case "turnOnOrOffFlashlight":
-        videoHelper.turnOnOrOffFlashlight(call, result);
-        break;
-      case "isSupportFlashlight":
-        videoHelper.isSupportFlashlight(result);
-        break;
-      case "isFlashlightOn":
-        videoHelper.isFlashlightOn(result);
-        break;
       case "isOriginalAspectRatioEnabled":
         videoHelper.isOriginalAspectRatioEnabled(result);
         break;
@@ -535,10 +511,10 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
         openBrowser(call, result);
         break;
       case "giveUpControlRemoteCamera":
-        remoteCameraControlHelper.giveUpControlRemoteCamera(call, result);
+        remoteCameraControlHelper.giveUpControlRemoteCamera(result);
         break;
       case "requestControlRemoteCamera":
-        remoteCameraControlHelper.requestControlRemoteCamera(call, result);
+        remoteCameraControlHelper.requestControlRemoteCamera(result);
         break;
       case "turnUp":
         remoteCameraControlHelper.turnUp(call, result);
@@ -713,7 +689,7 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
         result.success("SDK initialized successfully");
         break;
       default:
-        Log.d(DEBUG_TAG, String.format("SDK failed to initialize with error code: %d", initResult));
+        Log.d(DEBUG_TAG, String.format("SDK failed to initialize with error code: %lu", initResult));
         result.error("sdkinit_failed", "Init SDK Failed", null);
         break;
     }
@@ -818,24 +794,6 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
     } else {
       result.success(FlutterZoomVideoSdkRecordingConsentType.valueOf(ConsentType.ConsentType_Invalid));
     }
-  }
-
-  void exportLog(@NonNull MethodChannel.Result result) {
-    activity.runOnUiThread(new Runnable() {
-      @Override
-      public void run() {
-        result.success(ZoomVideoSDK.getInstance().exportLog());
-      }
-    });
-  }
-
-  void cleanAllExportedLogs(@NonNull MethodChannel.Result result) {
-    activity.runOnUiThread(new Runnable() {
-      @Override
-      public void run() {
-        result.success(FlutterZoomVideoSdkErrors.valueOf(ZoomVideoSDK.getInstance().cleanAllExportedLogs()));
-      }
-    });
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -1417,38 +1375,6 @@ public class FlutterZoomVideoSdkPlugin implements FlutterPlugin, MethodCallHandl
     eventSink.success(params);
 
   }
-
-  @Override
-  public void onMicSpeakerVolumeChanged(int micVolume, int speakerVolume) {
-    Map<String, Object> params = new HashMap<>();
-    params.put("name", "onMicSpeakerVolumeChanged");
-    Map<String, Object> message = new HashMap<>();
-    message.put("micVolume", micVolume);
-    message.put("speakerVolume", speakerVolume);
-    params.put("message", message);
-    eventSink.success(params);
-  }
-
-  @Override
-  public void onTestMicStatusChanged(ZoomVideoSDKTestMicStatus status) {
-    Map<String, Object> params = new HashMap<>();
-    params.put("name", "onTestMicStatusChanged");
-    Map<String, Object> message = new HashMap<>();
-    message.put("status", FlutterZoomVideoSdkTestMicStatus.valueOf(status));
-    params.put("message", message);
-    eventSink.success(params);
-  }
-  @Override
-  public void onCalloutJoinSuccess(ZoomVideoSDKUser user,String phoneNumber) {
-    Map<String, Object> params = new HashMap<>();
-    params.put("name", "onCalloutJoinSuccess");
-    Map<String, Object> message = new HashMap<>();
-    message.put("phoneNumber", phoneNumber);
-    message.put("user", FlutterZoomVideoSdkUser.jsonUser(user));
-    params.put("message", message);
-    eventSink.success(params);
-  }
-
   // -----------------------------------------------------------------------------------------------
   // endregion
   // -----------------------------------------------------------------------------------------------

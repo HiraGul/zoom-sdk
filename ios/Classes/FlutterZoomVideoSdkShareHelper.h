@@ -3,8 +3,6 @@
 
 @interface FlutterZoomVideoSdkShareHelper: NSObject
 
--(instancetype)initWithBundleId:(NSString*)bundleId;
-
 -(void) shareScreen: (FlutterResult) result;
 
 -(void) shareView: (FlutterResult) result;
@@ -30,9 +28,5 @@
 -(void) disableViewerAnnotation:(FlutterMethodCall *)call withResult:(FlutterResult) result;
 
 -(void) isViewerAnnotationDisabled: (FlutterResult) result;
-
--(void) pauseShare: (FlutterResult) result;
-
--(void) resumeShare: (FlutterResult) result;
 
 @end

@@ -503,16 +503,4 @@ RCT_ENUM_CONVERTER_WITH_REVERSED(
     integerValue
 )
 
-RCT_ENUM_CONVERTER_WITH_REVERSED(
-
-    ZoomVideoSDKTestMicStatus,
-    (@{
-            @"ZoomVideoSDKMic_CanTest" : @(ZoomVideoSDKMic_CanTest),
-            @"ZoomVideoSDKMic_Recording" : @(ZoomVideoSDKMic_Recording),
-            @"ZoomVideoSDKMic_CanPlay" : @(ZoomVideoSDKMic_CanPlay),
-    }),
-    ZoomVideoSDKMic_CanTest,
-    integerValue
-)
-
 @end

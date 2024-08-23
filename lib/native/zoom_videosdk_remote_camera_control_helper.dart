@@ -13,35 +13,35 @@ abstract class ZoomVideoSdkRemoteCameraControlHelperPlatform extends PlatformInt
     _instance = instance;
   }
 
-  Future<String> giveUpControlRemoteCamera(String userId) async {
+  Future<String> giveUpControlRemoteCamera() async {
     throw UnimplementedError('giveUpControlRemoteCamera() has not been implemented.');
   }
 
-  Future<String> requestControlRemoteCamera(String userId) async {
+  Future<String> requestControlRemoteCamera() async {
     throw UnimplementedError('requestControlRemoteCamera() has not been implemented.');
   }
 
-  Future<String> turnLeft(String userId, num range) async {
+  Future<String> turnLeft() async {
     throw UnimplementedError('turnLeft() has not been implemented.');
   }
 
-  Future<String> turnRight(String userId, num range) async {
+  Future<String> turnRight() async {
     throw UnimplementedError('turnRight() has not been implemented.');
   }
 
-  Future<String> turnDown(String userId, num range) async {
+  Future<String> turnDown() async {
     throw UnimplementedError('turnDown() has not been implemented.');
   }
 
-  Future<String> turnUp(String userId, num range) async {
+  Future<String> turnUp() async {
     throw UnimplementedError('turnUp() has not been implemented.');
   }
 
-  Future<String> zoomIn(String userId, num range) async {
+  Future<String> zoomIn() async {
     throw UnimplementedError('zoomIn() has not been implemented.');
   }
 
-  Future<String> zoomOut(String userId, num range) async {
+  Future<String> zoomOut() async {
     throw UnimplementedError('zoomOut() has not been implemented.');
   }
 
@@ -51,111 +51,81 @@ abstract class ZoomVideoSdkRemoteCameraControlHelperPlatform extends PlatformInt
 class ZoomVideoSdkRemoteCameraControlHelper extends ZoomVideoSdkRemoteCameraControlHelperPlatform {
   final methodChannel = const MethodChannel('flutter_zoom_videosdk');
 
-  /// Give up control of the remote camera from the user with [userId].
+  /// Give up control of the remote camera.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> giveUpControlRemoteCamera(String userId) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-
+  Future<String> giveUpControlRemoteCamera() async {
     return await methodChannel
-        .invokeMethod<String>('giveUpControlRemoteCamera', params)
+        .invokeMethod<String>('giveUpControlRemoteCamera')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Request to control remote camera from the user with [userId].
+  /// Request to control remote camera.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> requestControlRemoteCamera(String userId) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-
+  Future<String> requestControlRemoteCamera() async {
     return await methodChannel
-        .invokeMethod<String>('requestControlRemoteCamera', params)
+        .invokeMethod<String>('requestControlRemoteCamera')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera to the left by [range] from the user with [userId].
+  /// Turn the camera to the left by [range].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> turnLeft(String userId, num range) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-    params.putIfAbsent("range", () => range);
-
+  Future<String> turnLeft() async {
     return await methodChannel
-        .invokeMethod<String>('turnLeft', params)
+        .invokeMethod<String>('turnLeft')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera to the right by [range] from the user with [userId].
+  /// Turn the camera to the right by [range].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> turnRight(String userId, num range) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-    params.putIfAbsent("range", () => range);
-
+  Future<String> turnRight() async {
     return await methodChannel
-        .invokeMethod<String>('turnRight', params)
+        .invokeMethod<String>('turnRight')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera down by [range] from the user with [userId].
+  /// Turn the camera down by [range].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> turnDown(String userId, num range) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-    params.putIfAbsent("range", () => range);
-
+  Future<String> turnDown() async {
     return await methodChannel
-        .invokeMethod<String>('turnDown', params)
+        .invokeMethod<String>('turnDown')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Turn the camera up by [range] from the user with [userId].
+  /// Turn the camera up by [range].
   /// Rotation range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> turnUp(String userId, num range) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-    params.putIfAbsent("range", () => range);
-
+  Future<String> turnUp() async {
     return await methodChannel
-        .invokeMethod<String>('turnUp', params)
+        .invokeMethod<String>('turnUp')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Zoom in the camera by [range] from the user with [userId].
+  /// Zoom in the camera by [range].
   /// Zoom range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> zoomIn(String userId, num range) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-    params.putIfAbsent("range", () => range);
-
+  Future<String> zoomIn() async {
     return await methodChannel
-        .invokeMethod<String>('zoomIn', params)
+        .invokeMethod<String>('zoomIn')
         .then<String>((String? value) => value ?? "");
   }
 
-  /// Zoom out the camera by [range] from the user with [userId].
+  /// Zoom out the camera by [range].
   /// Zoom range,  10 <= range <= 100.
   /// <br />Return [ZoomVideoSDKError_Success] if the function succeeds.
   @override
-  Future<String> zoomOut(String userId, num range) async {
-    var params = <String, dynamic>{};
-    params.putIfAbsent("userId", () => userId);
-    params.putIfAbsent("range", () => range);
-
+  Future<String> zoomOut() async {
     return await methodChannel
-        .invokeMethod<String>('zoomOut', params)
+        .invokeMethod<String>('zoomOut')
         .then<String>((String? value) => value ?? "");
   }
 

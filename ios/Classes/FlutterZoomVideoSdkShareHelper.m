@@ -2,18 +2,7 @@
 #import "FlutterZoomVideoSdkShareHelper.h"
 #import "JSONConvert.h"
 
-#define kBroadcastPickerTag 10001
-
 @implementation FlutterZoomVideoSdkShareHelper
-
-NSString* appGroupId;
-
--(instancetype)initWithBundleId:(NSString*)bundleId {
-    if (self = [super init]) {
-        appGroupId = bundleId;
-    }
-    return self;
-}
 
 - (ZoomVideoSDKShareHelper *)getShareHelper
 {
@@ -37,35 +26,22 @@ NSString* appGroupId;
     if (@available(iOS 12.0, *)) {
         dispatch_async(dispatch_get_main_queue(), ^{
             RPSystemBroadcastPickerView *broadcastView = [[RPSystemBroadcastPickerView alloc] init];
-            broadcastView.preferredExtension = appGroupId;
-            broadcastView.tag = kBroadcastPickerTag;
 
             UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
             [root.view addSubview:broadcastView];
-            [self sendTouchDownEventToBroadcastButton];
+
+            for (UIView *subView in broadcastView.subviews) {
+                if ([subView isKindOfClass:[UIButton class]])
+                {
+                    UIButton *broadcastBtn = (UIButton *)subView;
+                    [broadcastBtn sendActionsForControlEvents:UIControlEventAllTouchEvents];
+                    break;
+                }
+            }
 
         });
     } else {
-        // Guide page
-    }
-}
-
-- (void)sendTouchDownEventToBroadcastButton
-{
-    if (@available(iOS 12.0, *)) {
-        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-        RPSystemBroadcastPickerView *broadcastView = [root.view viewWithTag:kBroadcastPickerTag];
-        if (!broadcastView) return;
-
-        
-        for (UIView *subView in broadcastView.subviews) {
-            if ([subView isKindOfClass:[UIButton class]])
-            {
-                UIButton *broadcastBtn = (UIButton *)subView;
-                [broadcastBtn sendActionsForControlEvents:UIControlEventAllTouchEvents];
-                break;
-            }
-        }
+        // TODO: Should we just error our?
     }
 }
 
@@ -82,13 +58,7 @@ NSString* appGroupId;
 -(void) stopShare: (FlutterResult) result
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-        RPSystemBroadcastPickerView *broadcastView = [root.view viewWithTag:kBroadcastPickerTag];
-        broadcastView.preferredExtension = appGroupId;
-        broadcastView.tag = kBroadcastPickerTag;
-
-        [root.view addSubview:broadcastView];
-        [self sendTouchDownEventToBroadcastButton];
+        result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([[self getShareHelper] stopShare])]);
     });
 }
 
@@ -169,20 +139,6 @@ NSString* appGroupId;
     } else {
         result(@NO);
     }
-}
-
--(void) pauseShare:(FlutterResult) result
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([[self getShareHelper] pauseShare])]);
-    });
-}
-
--(void) resumeShare:(FlutterResult) result
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([[self getShareHelper] resumeShare])]);
-    });
 }
 
 @end

@@ -49,7 +49,7 @@
 
     if (chatHelper.IsChatDisabled == NO) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([chatHelper deleteChatMessage: call.arguments[@"msgId"]])]);
+            result([[JSONConvert ZoomVideoSDKErrorValuesReversed] objectForKey: @([chatHelper deleteChatMessage: call.arguments[@"msgID"]])]);
         });
     }
 }
@@ -59,7 +59,7 @@
 
     if (chatHelper.IsChatDisabled == NO) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([chatHelper canChatMessageBeDeleted: call.arguments[@"msgId"]]) {
+            if ([chatHelper canChatMessageBeDeleted: call.arguments[@"msgID"]]) {
                 result(@YES);
             } else {
                 result(@NO);
