@@ -156,22 +156,4 @@ public class FlutterZoomVideoSdkShareHelper {
         });
     }
 
-    public void pauseShare(@NonNull MethodChannel.Result result) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                result.success(FlutterZoomVideoSdkErrors.valueOf(getShareHelper().pauseShare()));
-            }
-        });
-    }
-
-    public void resumeShare(@NonNull MethodChannel.Result result) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                result.success(FlutterZoomVideoSdkErrors.valueOf(getShareHelper().resumeShare()));
-            }
-        });
-    }
-
 }

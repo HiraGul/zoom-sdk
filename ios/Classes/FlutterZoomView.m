@@ -140,10 +140,13 @@
     preview = newPreview;
 
     ZoomVideoSDKVideoHelper* videoHelper = [[ZoomVideoSDK shareInstance] getVideoHelper];
-    if (preview == YES) {
+    if (preview == YES && currentCanvas == nil) {
         [videoHelper startVideoCanvasPreview: self andAspectMode: videoAspect];
+        ZoomVideoSDKUser* user = [[[ZoomVideoSDK shareInstance] getSession] getMySelf];
+        currentCanvas = [user getVideoCanvas];
     } else {
         [videoHelper stopVideoCanvasPreview: self];
+        currentCanvas = nil;
     }
 }
 

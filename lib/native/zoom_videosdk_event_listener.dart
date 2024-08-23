@@ -46,7 +46,6 @@ class EventType {
   static const onVideoCanvasSubscribeFail = 'onVideoCanvasSubscribeFail';
   static const onTestMicStatusChanged = 'onTestMicStatusChanged';
   static const onMicSpeakerVolumeChanged = 'onMicSpeakerVolumeChanged';
-  static const onCalloutJoinSuccess = 'onCalloutJoinSuccess';
 }
 
 class ZoomVideoSdkEventListener {

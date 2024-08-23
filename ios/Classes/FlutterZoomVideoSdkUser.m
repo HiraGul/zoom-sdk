@@ -155,11 +155,4 @@
     }
 }
 
--(void) getUserReference: (FlutterMethodCall *)call withResult:(FlutterResult) result {
-    ZoomVideoSDKUser *user = [FlutterZoomVideoSdkUser getUser: call.arguments[@"userId"]];
-    if (user != nil) {
-        result([user getUserReference]);
-    }
-}
-
 @end

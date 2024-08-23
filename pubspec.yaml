@@ -1,6 +1,6 @@
 name: flutter_zoom_videosdk
 description: A Flutter plugin for Zoom Video SDK.
-version: 1.11.2
+version: 1.10.1
 homepage: https://developers.zoom.us/docs/video-sdk/flutter/
 
 environment:
