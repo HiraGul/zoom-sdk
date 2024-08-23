@@ -97,4 +97,4 @@ Copyright ©2023 Zoom Video Communications, Inc. All rights reserved.
 
 ***
 
-ZOOM VERSION 3
+ZOOM VERSION 2
